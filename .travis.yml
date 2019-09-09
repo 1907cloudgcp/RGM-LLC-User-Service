@@ -1,3 +1,11 @@
 language: java
-mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-mvn test -B
+sudo: true
+dist: trusty
+#trusty may be the incorrect distro. Check this if there are problems
+jdk: oraclejdk9
+addons:
+ apt:
+   packages:
+     - oracle-java9-installer
+before_install:
+ - chmod +x mvnw
