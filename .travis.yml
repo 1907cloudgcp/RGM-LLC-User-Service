@@ -1,6 +1,6 @@
 language: java
 dist: trusty
-sudo: true
+sudo: enabled
 jdk: oraclejdk8
 addons:
  postgresql: "9.6"
@@ -8,7 +8,6 @@ addons:
    packages:
      - oracle-java8-installer
 before_install:
-- cd server
 - psql -c "create database db-production;" -U postgres
 - sudo -u postgres psql -c "ALTER ROLE postgres WITH password 'postgres'"
 - chmod +x mvnw
