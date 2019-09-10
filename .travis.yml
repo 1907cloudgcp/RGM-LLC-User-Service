@@ -8,3 +8,5 @@ addons:
       - oracle-java8-installer
 before_install:
   - chmod +x mvnw
+before_script:
+  - echo JDBC_PASSWORD
