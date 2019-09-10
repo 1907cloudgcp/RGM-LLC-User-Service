@@ -9,4 +9,4 @@ addons:
 before_install:
   - chmod +x mvnw
 after_script:
-  - docker build --build-arg db=$DATABASE_NAME --build-arg schema=$JDBC_SCHEMA --build-arg url=$JDBC_URL --build-arg username=$JDBC_USERNAME --build-arg password=$JDBC_PASSWORD
+  - docker build --build-arg db=$DATABASE_NAME --build-arg schema=$JDBC_SCHEMA --build-arg url=$JDBC_URL --build-arg username=$JDBC_USERNAME --build-arg password=$JDBC_PASSWORD .
