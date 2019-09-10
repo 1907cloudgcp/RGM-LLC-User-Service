@@ -1,7 +1,7 @@
 KEY_FILE:=client-secret.json
 PROJECT_ID:=project2-userteam
 K8s_CLUSTER:=standard-cluster-1
-REGION:=us-central1-a
+REGION:=us-central1
 
 IMAGE_NAME:=user-servce
 IMAGE_VERSION:=v1
