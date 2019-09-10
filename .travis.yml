@@ -16,7 +16,7 @@ addons:
       - oracle-java8-installer
 before_install:
   - chmod +x mvnw
-  - DECRYPT_COMMAND
+  - openssl aes-256-cbc -K $encrypted_c52989533dfa_key -iv $encrypted_c52989533dfa_iv -in client-secret.json.enc -out client-secret.json -d
 after_script:
   - docker build --build-arg db=$DATABASE_NAME --build-arg schema=$JDBC_SCHEMA --build-arg url=$JDBC_URL --build-arg username=$JDBC_USERNAME --build-arg password=$JDBC_PASSWORD .
   - gcloud auth activate-service-account --key-file client-secret.json
