@@ -8,6 +8,7 @@ IMAGE_VERSION:=v1
 
 gauth:
 	@gcloud auth activate-service-account --key-file ${KEY_FILE}
+	@gcloud auth configure-docker
 
 gconfig:
 	@gcloud config set project $(PROJECT_ID)
