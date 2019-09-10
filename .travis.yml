@@ -20,5 +20,5 @@ before_install:
 after_script:
   - docker build --build-arg db=$DATABASE_NAME --build-arg schema=$JDBC_SCHEMA --build-arg url=$JDBC_URL --build-arg username=$JDBC_USERNAME --build-arg password=$JDBC_PASSWORD .
   - gcloud auth activate-service-account --key-file client-secret.json
-#after_success:
-#  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then ./deploy.sh; fi
+after_success:
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then ./deploy.sh; fi
