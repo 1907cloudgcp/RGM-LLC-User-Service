@@ -8,3 +8,9 @@ addons:
       - oracle-java8-installer
 before_install:
   - chmod +x mvnw
+env:
+  - DATABASE_NAME=postgres
+  - JDBC_SCHEMA=userservice
+  - JDBC_URL=35.226.77.90
+  - JDBC_USERNAME=postgres
+  - JDBC_PASSWORD=yL4afwJexnAlg7OA
