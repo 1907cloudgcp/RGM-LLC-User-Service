@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: gcr.io/project2-userteam/user-servce:v1
+        image: gcr.io/project2-userteam/user-service:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
