@@ -1,3 +1,4 @@
+KEY_FILE:=client-secret.json
 PROJECT_ID:=project2-userteam
 K8s_CLUSTER:=standard-cluster-1
 ZONE:=us-central1-a
@@ -6,7 +7,7 @@ IMAGE_NAME:=user-servce
 IMAGE_VERSION:=v1
 
 gauth:
-	@gcloud auth activate-service-account --key-file ${GOOGLE_APPLICATION_CREDENTIALS}
+	@gcloud auth activate-service-account --key-file ${KEY_FILE}
 
 gconfig:
 	@gcloud config set project $(PROJECT_ID)
@@ -17,7 +18,7 @@ gconfig:
 	@gcloud auth configure-docker
 
 build:
-	@docker build -t gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(IMAGE_VERSION) .
+	@docker build -t gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(IMAGE_VERSION)  --build-arg db=$(DATABASE_NAME) --build-arg schema=$(JDBC_SCHEMA) --build-arg url=$(JDBC_URL) --build-arg username=$(JDBC_USERNAME) --build-arg password=$(JDBC_PASSWORD) .
 
 run:
 	@docker run -p 8000:8000 gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(IMAGE_VERSION)
