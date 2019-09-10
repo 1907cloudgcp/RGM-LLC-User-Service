@@ -1,7 +1,7 @@
 KEY_FILE:=client-secret.json
 PROJECT_ID:=project2-userteam
 K8s_CLUSTER:=standard-cluster-1
-ZONE:=us-central1-a
+REGION:=us-central1-a
 
 IMAGE_NAME:=user-servce
 IMAGE_VERSION:=v1
@@ -14,7 +14,7 @@ gconfig:
 	@gcloud config set project $(PROJECT_ID)
 	@gcloud container clusters \
 		get-credentials $(K8s_CLUSTER) \
-		--zone $(ZONE) \
+		--region $(REGION) \
 		--project $(PROJECT_ID)
 	@gcloud auth configure-docker
 
