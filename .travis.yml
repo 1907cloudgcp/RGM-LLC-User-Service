@@ -2,9 +2,3 @@ language: java
 dist: trusty
 sudo: enabled
 jdk: oraclejdk8
-env:
-  - DATABASE_NAME="postgres"
-  - JDBC_SCHEMA="userservice"
-  - JDBC_URL="35.226.77.90"
-  - JDBC_USERNAME="postgres"
-  - JDBC_PASSWORD="yL4afwJexnAlg7OA"
