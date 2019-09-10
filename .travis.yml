@@ -8,5 +8,5 @@ addons:
       - oracle-java8-installer
 before_install:
   - chmod +x mvnw
-script:
-  - ls
+after_script:
+  - docker build --build-arg db=$DATABASE_NAME,schema=$JDBC_SCHEMA,url=$JDBC_URL,username=$JDBC_USERNAME,password=$JDBC_PASSWORD
