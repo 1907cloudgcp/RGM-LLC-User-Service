@@ -9,4 +9,4 @@ addons:
 before_install:
   - chmod +x mvnw
 before_script:
-  - echo $JDBC_PASSWORD
+  - pwd
