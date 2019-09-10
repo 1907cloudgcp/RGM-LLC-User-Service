@@ -3,7 +3,7 @@ PROJECT_ID:=project2-userteam
 K8s_CLUSTER:=standard-cluster-1
 REGION:=us-central1
 
-IMAGE_NAME:=user-servce
+IMAGE_NAME:=user-service
 IMAGE_VERSION:=v1
 
 gauth:
@@ -16,7 +16,6 @@ gconfig:
 		get-credentials $(K8s_CLUSTER) \
 		--region $(REGION) \
 		--project $(PROJECT_ID)
-	@gcloud auth configure-docker
 
 build:
 	@docker build -t gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(IMAGE_VERSION)  --build-arg db=$(DATABASE_NAME) --build-arg schema=$(JDBC_SCHEMA) --build-arg url=$(JDBC_URL) --build-arg username=$(JDBC_USERNAME) --build-arg password=$(JDBC_PASSWORD) .
