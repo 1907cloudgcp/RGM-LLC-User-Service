@@ -1,7 +1,6 @@
 steps:
 - name: "gcr.io/cloud-builders/mvn"
   entrypoint: "printenv"
-  args: ["JDBC_URL"]
   env: 
   -  "DATABASE_NAME=postgres"
   -  "JDBC_SCHEMA=userservice"
