@@ -15,7 +15,7 @@ spec:
         image: gcr.io/project2-userteam/user-service:v1
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+                - containerPort: 8090
         readinessProbe:
           httpGet:
             path: /actuator/health
