@@ -9,7 +9,6 @@ ENV DATABASE_NAME=$db
 ENV JDBC_SCHEMA=$schema
 ENV JDBC_URL=$url
 ENV JDBC_USERNAME=$username
-ENV JDBC_PASSWORD=$password
 
 RUN mkdir app
 

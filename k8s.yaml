@@ -13,6 +13,12 @@ spec:
       containers:
       - name: user-service
         image: gcr.io/project2-userteam/user-service:v1
+        env:
+          - name: JDBC_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-pass
+                key: password
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
