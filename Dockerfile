@@ -1,16 +1,14 @@
-FROM openjdk:8
-ARG db
-ARG schema
-ARG url
-ARG username
-ARG password
+FROM openjdk:8-alpine
 
-ENV DATABASE_NAME=$db
-ENV JDBC_SCHEMA=$schema
-ENV JDBC_URL=$url
-ENV JDBC_USERNAME=$username
-ENV JDBC_PASSWORD=$password
+ARG URL
+ARG PASSWORD
 
-COPY /target/RGM-User-Service-0.0.1-SNAPSHOT.jar .
+ENV DATABASE_NAME=postgres
+ENV JDBC_SCHEMA=userservice
+ENV JDBC_URL=${URL}
+ENV JDBC_USERNAME=postgres
+ENV JDBC_PASSWORD=${PASSWORD}
 
-CMD ["java", "-jar", "/target/RGM-User-Service-0.0.1-SNAPSHOT.jar"]
+COPY target/RGM-User-Service-0.0.1-SNAPSHOT.jar .
+
+CMD ["java", "-jar", "RGM-User-Service-0.0.1-SNAPSHOT.jar"]
