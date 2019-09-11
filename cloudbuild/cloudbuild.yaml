@@ -12,7 +12,7 @@ steps:
 
 - name: "gcr.io/cloud-builders/docker"
   entrypoint: "bash"
-  args: ["-c", "docker build -t gcr.io/$PROJECT_ID/us-uat:latest --build-arg NAME=postgres --build-arg SCHEMA=userservice --build-arg URL=$$JDBC_URL --build-arg USERNAME=postgres --build-arg PASSWORD=$$JDBC_PASSWORD ."]
+  args: ["-c", "docker build -t gcr.io/$PROJECT_ID/us-uat:latest --build-arg URL=$$JDBC_URL --build-arg PASSWORD=$$JDBC_PASSWORD ."]
   secretEnv: 
   - "JDBC_URL"
   - "JDBC_PASSWORD"
