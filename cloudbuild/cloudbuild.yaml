@@ -26,7 +26,7 @@ steps:
 secrets:
 - kmsKeyName: "projects/project2-userteam/locations/global/keyRings/us-secrets/cryptoKeys/secrets-key"
   secretEnv:
-    JDBC_URL: "CiQASM9lGlH2ciS2eFWdjtlZkEXBEydgZJZHgJAYGt0WGWrbEnISNgCmA8u6/pWVW26MMNravjZCETmhz95C0oMqQzfbbI8+vAH1Ycmq70oOivK1/EvLQv7so2FGJg=="
-    JDBC_PASSWORD: "CiQASM9lGk1M9Mev92bPzTyEr1ul0iKLjesYNZhcJSwnJebD3gwSOgCmA8u62zVZcCET5oYB24orcn1mzJunkDIEmAvK68lEHb89a0QCedls+gIdNLt+C+xs5529UH/vTBo="
+    JDBC_URL: "CiQASM9lGkiEGk+n8zvvygOSOrWfJmufVRLP5rUpc26PSCMFUm4SNQCmA8u65oL5lKa+5opdqARqiKFu+n/40gM1K10Xtjgqv3YRUbusPmzW9AMp4o4MnbcGonFE"
+    JDBC_PASSWORD: "CiQASM9lGtCbNGC/VmtR0izniRoI+LhWfEoKhE2OCwCANEloO1gSOQCmA8u6U7/aGFjcCavZ9OIz1Ef1dsbeXpYNazw2OLoWMbY9YGVEbKGSAmidnYUMkdevZ/C26xS3+g=="
  
 timeout: "1600s"
