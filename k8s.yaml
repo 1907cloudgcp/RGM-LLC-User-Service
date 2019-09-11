@@ -14,6 +14,8 @@ spec:
       - name: user-service
         image: gcr.io/project2-userteam/user-service:v1
         env:
+          - name: POSTGRES_DB_HOST
+            value: 35.226.77.90
           - name: JDBC_PASSWORD
             valueFrom:
               secretKeyRef:
