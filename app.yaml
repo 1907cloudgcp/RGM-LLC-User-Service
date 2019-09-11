@@ -1,6 +1,6 @@
 runtime: custom
 env: flex 
-service: default
+service: user-service-production
 resources:
   cpu: 1
   memory_gb: 1

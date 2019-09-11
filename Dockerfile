@@ -1,13 +1,16 @@
-FROM maven:3.6.1-jdk-8-alpine
+FROM openjdk:8
+ARG db
+ARG schema
+ARG url
+ARG username
+ARG password
 
-ENV DATABASE_NAME="postgres"
-ENV JDBC_SCHEMA="userservice"
-ENV JDBC_URL="34.67.56.227"
-ENV JDBC_USERNAME="postgres"
-ENV JDBC_PASSWORD="yL4afwJexnAlg7OA"
+ENV DATABASE_NAME=$db
+ENV JDBC_SCHEMA=$schema
+ENV JDBC_URL=$url
+ENV JDBC_USERNAME=$username
+ENV JDBC_PASSWORD=$password
 
-COPY . .
-
-RUN mvn package
+COPY /target/RGM-User-Service-0.0.1-SNAPSHOT.jar .
 
 CMD ["java", "-jar", "/target/RGM-User-Service-0.0.1-SNAPSHOT.jar"]
