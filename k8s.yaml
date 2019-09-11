@@ -18,8 +18,8 @@ spec:
         - containerPort: 8000
         readinessProbe:
           httpGet:
-            path: /
-            port: 8000
+            path: /actuator/health
+            port: 8080
         resources:
           limits:
             cpu: 70m
