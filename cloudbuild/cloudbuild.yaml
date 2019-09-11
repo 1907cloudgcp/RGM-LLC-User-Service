@@ -1,4 +1,32 @@
 steps:
+- name: "gcr.io/cloud-builders/mvn"
+  entrypoint: "mvn"
+  args: ["install"]
+  env: 
+  -  "DATABASE_NAME=postgres"
+  -  "JDBC_SCHEMA=userservice"
+  -  "JDBC_USERNAME=postgres"
+  secretEnv: 
+  - "JDBC_URL"
+  - "JDBC_PASSWORD"
+
+- name: "gcr.io/cloud-builders/docker"
+  entrypoint: "bash"
+  args: ["-c", "docker build -t gcr.io/$PROJECT_ID/us-uat:latest --build-arg NAME=postgres --build-arg SCHEMA=userservice --build-arg URL=$$JDBC_URL --build-arg USERNAME=postgres --build-arg PASSWORD=$$JDBC_PASSWORD ."]
+  secretEnv: 
+  - "JDBC_URL"
+  - "JDBC_PASSWORD"
+
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "gcr.io/$PROJECT_ID/us-uat:latest"]
+
 - name: "gcr.io/cloud-builders/gcloud"
-  args: ["app", "deploy"]
+  args: ["app", "deploy", "--image-url=gcr.io/$PROJECT_ID/us-uat:latest"]
+
+secrets:
+- kmsKeyName: "projects/$PROJECT_ID/locations/global/keyRings/us-secrets/cryptoKeys/secrets-key"
+  secretEnv:
+    JDBC_URL: "CiQASM9lGlH2ciS2eFWdjtlZkEXBEydgZJZHgJAYGt0WGWrbEnISNgCmA8u6/pWVW26MMNravjZCETmhz95C0oMqQzfbbI8+vAH1Ycmq70oOivK1/EvLQv7so2FGJg=="
+    JDBC_PASSWORD: "CiQASM9lGk1M9Mev92bPzTyEr1ul0iKLjesYNZhcJSwnJebD3gwSOgCmA8u62zVZcCET5oYB24orcn1mzJunkDIEmAvK68lEHb89a0QCedls+gIdNLt+C+xs5529UH/vTBo="
+ 
 timeout: "1600s"
