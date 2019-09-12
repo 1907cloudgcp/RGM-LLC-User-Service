@@ -1,14 +1,4 @@
 FROM openjdk:8
-ARG db
-ARG schema
-ARG url
-ARG username
-ARG password
-
-ENV DATABASE_NAME=$db
-ENV JDBC_SCHEMA=$schema
-ENV JDBC_URL=$url
-ENV JDBC_USERNAME=$username
 
 RUN mkdir app
 

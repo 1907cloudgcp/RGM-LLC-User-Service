@@ -14,11 +14,19 @@ spec:
       - name: user-service
         image: gcr.io/project2-userteam/user-service:v1
         env:
-          - name: JDBC_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: db-pass
-                key: password
+        - name: DATABASE_NAME
+          value: "postgres"
+        - name: JDBC_SCHEMA
+          value: "userservice"
+        - name: JDBC_URL
+          value: "10.96.64.4"
+        - name: JDBC_USERNAME
+          value: "postgres"
+        - name: JDBC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-pass
+              key: password
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
