@@ -18,7 +18,7 @@ gconfig:
 		--project $(PROJECT_ID)
 
 build:
-	@docker build -t gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(IMAGE_VERSION)  --build-arg db=$(DATABASE_NAME) --build-arg schema=$(JDBC_SCHEMA) --build-arg url=$(JDBC_URL) --build-arg username=$(JDBC_USERNAME) --build-arg password=$(JDBC_PASSWORD) .
+	@docker build -t gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(IMAGE_VERSION)  --build-arg db=$(DATABASE_NAME) --build-arg schema=$(JDBC_SCHEMA) --build-arg url=$(JDBC_PRIVATE_URL) --build-arg username=$(JDBC_USERNAME) --build-arg password=$(JDBC_PASSWORD) .
 
 run:
 	@docker run -p 8000:8000 gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(IMAGE_VERSION)
@@ -29,3 +29,6 @@ push:
 deploy: gconfig
 	@kubectl apply -f k8s.yaml
 	@kubectl patch deployment $(IMAGE_NAME) -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+
+set-image:
+	@kubectl set image gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(IMAGE_VERSION)
