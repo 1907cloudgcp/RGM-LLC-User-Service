@@ -31,4 +31,4 @@ deploy: gconfig
 	@kubectl patch deployment $(IMAGE_NAME) -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
 
 set-image:
-	@kubectl set image gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(IMAGE_VERSION)
+	@kubectl set image deployments/user-service user-service=gcr.io/$(PROJECT_ID)/$(IMAGE_NAME):$(IMAGE_VERSION)
