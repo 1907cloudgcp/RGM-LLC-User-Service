@@ -37,11 +37,10 @@ kind: Service
 metadata:
   name: user-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - name: http
     port: 80
     targetPort: 8080
   selector:
     app: user-service
-  type: LoadBalancer
