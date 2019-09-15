@@ -2,17 +2,29 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: user-service
+  
+#Define the machines for the cluster
 spec:
+  #we want 1 old replica set
   revisionHistoryLimit: 1
+  #We want one replica set
   replicas: 1
+  
+  #specify the machine 
   template:
+    #we give the pod a label of app: user-service
     metadata:
       labels:
         app: user-service
+    
     spec:
+      #this is our container setup
       containers:
+      #name of the container
       - name: user-service
+        #image we supply
         image: gcr.io/project2-userteam/user-service:v1
+        #We get our enviorment by our enviorment variables
         env:
         - name: DATABASE_NAME
           value: "postgres"
@@ -27,16 +39,22 @@ spec:
             secretKeyRef:
               name: db-pass
               key: password
+        #we always pull the image 
         imagePullPolicy: Always
+        #port we wish to use to expose our pod's ip address
         ports:
         - containerPort: 8080
+        #remove our container if our readiness fail
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
+            
         resources:
+          #We do not need more then 70 millicpu, or .07 cpu
           limits:
             cpu: 70m
+          #we request .07 cpus 
           requests:
             cpu: 70m
 ---
@@ -46,9 +64,11 @@ metadata:
   name: user-service
 spec:
   type: LoadBalancer
+  #take requests from port 80 and forward them to 8080 our pod
   ports:
   - name: http
     port: 80
     targetPort: 8080
+  #Label selector for our containers with the app: user-service label
   selector:
     app: user-service
